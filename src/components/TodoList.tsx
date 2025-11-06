@@ -22,6 +22,7 @@ import TodoItem from './TodoItem'
 export interface Todo {
   id: string
   text: string
+  completed: boolean
 }
 
 const STORAGE_KEY = 'todos'
@@ -59,6 +60,7 @@ export default function TodoList() {
       const newTodo: Todo = {
         id: Date.now().toString(),
         text: inputValue.trim(),
+        completed: false,
       }
       setTodos([...todos, newTodo])
       setInputValue('')
@@ -67,6 +69,12 @@ export default function TodoList() {
 
   const removeTodo = (id: string) => {
     setTodos(todos.filter((todo) => todo.id !== id))
+  }
+
+  const toggleComplete = (id: string) => {
+    setTodos(todos.map((todo) =>
+      todo.id === id ? { ...todo, completed: !todo.completed } : todo
+    ))
   }
 
   const handleDragEnd = (event: DragEndEvent) => {
@@ -124,6 +132,7 @@ export default function TodoList() {
                     todo={todo}
                     index={index}
                     onRemove={removeTodo}
+                    onToggleComplete={toggleComplete}
                   />
                 ))
               )}
