@@ -89,3 +89,4 @@ import { Button } from "@/components/ui/button"
 - No edit functionality for existing todos
 - No filtering or sorting options (beyond manual drag-and-drop)
 - localStorage only (no backend persistence)
+- Never use 'any' type for type declarations. create type interfaces
