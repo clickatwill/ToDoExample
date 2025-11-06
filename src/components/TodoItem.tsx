@@ -6,10 +6,11 @@ import { Todo } from './TodoList'
 
 interface TodoItemProps {
   todo: Todo
+  index: number
   onRemove: (id: string) => void
 }
 
-export default function TodoItem({ todo, onRemove }: TodoItemProps) {
+export default function TodoItem({ todo, index, onRemove }: TodoItemProps) {
   const {
     attributes,
     listeners,
@@ -29,7 +30,9 @@ export default function TodoItem({ todo, onRemove }: TodoItemProps) {
     <div
       ref={setNodeRef}
       style={style}
-      className="flex items-center gap-3 p-3 bg-secondary rounded-lg border border-border hover:bg-secondary/80 transition-colors"
+      className={`flex items-center gap-3 p-3 rounded-lg border border-border transition-colors ${
+        index % 2 === 0 ? 'bg-blue-50 hover:bg-blue-100' : 'bg-secondary hover:bg-secondary/80'
+      }`}
     >
       <div
         {...attributes}

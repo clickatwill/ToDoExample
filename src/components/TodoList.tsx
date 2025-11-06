@@ -118,10 +118,11 @@ export default function TodoList() {
                   No tasks yet. Add one above!
                 </p>
               ) : (
-                todos.map((todo) => (
+                todos.map((todo, index) => (
                   <TodoItem
                     key={todo.id}
                     todo={todo}
+                    index={index}
                     onRemove={removeTodo}
                   />
                 ))
